@@ -3,11 +3,11 @@ import './post-add-form.css';
 
 const PostAddForm = () => {
     return (
-        <form className="bottm-panel d-flex">
+        <form className="bottom-panel d-flex">
             <input
                 type="text"
                 placeholder="О чем Вы думаете сейчас"
-                className="from-control new-opdt-label"
+                className="form-control new-post-label"
             />
             <button
                 type="submit"
