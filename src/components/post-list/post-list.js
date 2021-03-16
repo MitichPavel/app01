@@ -1,5 +1,6 @@
 import React from 'react';
 import PostListItem from '../post-list-item';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 import './post-list.css';
 
 const PostList = ({posts}) => {
@@ -7,21 +8,21 @@ const PostList = ({posts}) => {
         const {id, ...itemProps} = item;
         return (
             // eslint-disable-next-line react/jsx-key
-            <li key={id} className='list-group-item'>
+            <ListGroupItem key={id}>
                 <PostListItem
                     // You can write as here or shorter as below
                     // label={item.label}
                     // important={item.important}
                     {...itemProps}
                 />
-            </li>
+            </ListGroupItem>
         )
     });
 
     return (
-        <ul className="app-list list-group">
+        <ListGroup className="app-list">
             {elements}
-        </ul>
+        </ListGroup>
     )
 }
 

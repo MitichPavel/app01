@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { ListGroupItem } from 'reactstrap';
 import './post-list-item.sass';
 
 export default class PostListItem extends Component {
