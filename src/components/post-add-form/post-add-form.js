@@ -2,9 +2,9 @@ import React from 'react';
 import { Button } from 'reactstrap';
 import './post-add-form.css';
 
-const PostAddForm = () => {
+const PostAddForm = ({onAdd}) => {
     return (
-        <form className="bottom-panel d-flex">
+        <div className="bottom-panel d-flex">
             <input
                 type="text"
                 placeholder="О чем Вы думаете сейчас"
@@ -14,8 +14,9 @@ const PostAddForm = () => {
                 type="submit"
                 outline
                 color="secondary"
+                onClick={() => onAdd('hello')}
             >Добавить</Button>
-        </form>
+        </div>
     )
 }
 export default PostAddForm;

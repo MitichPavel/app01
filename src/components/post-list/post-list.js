@@ -3,7 +3,7 @@ import PostListItem from '../post-list-item';
 import { ListGroup, ListGroupItem } from 'reactstrap';
 import './post-list.css';
 
-const PostList = ({posts}) => {
+const PostList = ({posts, onDelete}) => {
     const elements = posts.map((item) => {
         if(item instanceof Object && item.constructor !== Array && isEmpty(item)) {
             const {id, ...itemProps} = item;
@@ -15,6 +15,8 @@ const PostList = ({posts}) => {
                         // label={item.label}
                         // important={item.important}
                         {...itemProps}
+
+                        onDelete={() => onDelete(id)}
                     />
                 </ListGroupItem>
             )
