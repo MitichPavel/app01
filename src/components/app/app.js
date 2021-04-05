@@ -20,13 +20,15 @@ export default class App extends Component {
                 {label: 'This is so good!', important: false, like: false, id: 2},
                 {label: 'I need a break...', important: false, like: false, id: 3 }
             ],
-            term: ''
+            term: '',
+            filter: 'all'
         }
         this.deleteItem = this.deleteItem.bind(this);
         this.addItem = this.addItem.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onUpdateSearch = this.onUpdateSearch.bind(this);
+        this.onFilterSelect = this.onFilterSelect.bind(this);
 
         this.maxId = 4;
     }
@@ -95,17 +97,30 @@ export default class App extends Component {
         });
     }
 
+    filterPost(items, filter) {
+        if (filter === 'like') {
+            return items.filter(item => item.like)
+        } else {
+            // At this situation filter is "all"
+            return items
+        }
+    }
+
     onUpdateSearch(term) {
         this.setState({term})
     }
 
+    onFilterSelect(filter) {
+        this.setState({filter})
+    }
+
     render() {
-        const {data, term} = this.state;
+        const {data, term, filter} = this.state;
 
         const liked = data.filter(item => item.like).length;
         const allPosts = data.length;
 
-        const visiblePosts = this.searchPost(data, term);
+        const visiblePosts = this.filterPost(this.searchPost(data, term), filter);
 
         return (
             <div className="app">
@@ -117,7 +132,10 @@ export default class App extends Component {
                     <SearchPanel
                         onUpdateSearch={this.onUpdateSearch}
                         />
-                    <PostStatusFilter/>
+                    <PostStatusFilter
+                        filter={filter}
+                        onFilterSelect={this.onFilterSelect}
+                    />
                 </div>
                 <PostList
                     posts={visiblePosts}
