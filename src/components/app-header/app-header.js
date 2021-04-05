@@ -25,14 +25,14 @@ const Header = styled.div`
         color: grey;
     }
 `
-const AppHeader = () => {
+const AppHeader = ({liked, allPosts}) => {
     return (
         <Header>
             <div className="d-flex">
                 <h1>Pavlo Mitich</h1>
                 <Indicator online/>
             </div>
-            <h2>5 записей, из них понравилось 0</h2>
+            <h2>{allPosts} записей, из них понравилось {liked}</h2>
         </Header>
     )
 }
